@@ -8,9 +8,9 @@ class City:
     self.name = name
     self.lat = lat
     self.lon = lon
-  
-  def __str__(self):
-    return f"{self.name}, {self.lat}, {self.lon}"
+
+  def __repr__(self):
+    return f'City("{self.name}", {self.lat},{self.lon})'
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -36,15 +36,16 @@ def cityreader(cities=[]):
     citiesreader = csv.reader(csvfile)
     for c in citiesreader:
       if c[0] != 'city':
-        cities.append(City(c[0], c[3], c[4]))
+        cities.append(City(f"{c[0]}", float(c[3]), float(c[4])))
     
   return cities
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print((f'"{c.name}", {c.lat}, {c.lon}'))
+
+for c in cities:  
+  print(c)
 
 # STRETCH GOAL!
 #
